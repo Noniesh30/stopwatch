@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <link rel="icon" type="image/x-icon" href="swicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+    <style>
+        body
+        {
+            color:azure;
+            background-color: black;
+            font-family: 'Poppins', sans-serif;
+            align-content: center;
+        }
+        .r1
+        {
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        .num
+        {
+            color:white;
+            font-size: 1.4rem;
+            border:4x solid whitesmoke;
+            background-color: rgb(85, 61, 163);
+            align-items: center;
+            width:150px;
+            height:50px;
+            border-radius: 40px;
+            font-family: 'Poppins', sans-serif;
+            margin-right: 2.5px;
+            margin-left: 2.5px;  
+
+        }
+        .num:hover
+        {
+            background-color: rgb(170, 113, 223);
+        }
+        .r2
+        {
+            margin-right: 33%;
+            margin-left: 33%;  
+        }
+        #demo
+        {
+            color:white;
+            font-size: 5rem;
+            margin-right: 35%;
+            margin-left: 40%;  
+            margin-bottom: 3%;
+            
+        }
+    </style>
+</head>
+<body>
+    <header class="r1">
+        <h1>
+            Stopwatch!!
+        </h1>
+    </header>
+    <br>
+    <br>
+    <div id="demo">
+        
+    </div>
+    <div class="r2">
+        <button class="num" id="b1"onclick="start()">Start</button>
+        <button class="num" onclick="stopp()">Stop</button>
+        <button class="num" onclick="rset()">Reset</button>
+    </div>
+    <script>
+        let min=0;
+        let sec=0;
+        let hr=0;
+        let x;
+        var t;
+        let run=0;
+        x=hr+'  :: '+min+'  :: '+sec;
+        document.getElementById("demo").innerHTML =x ;
+        function start()
+        {  
+            sec=sec+1;
+            if(sec>59)
+            {
+                min=min+1;
+                sec=0;
+            }
+            if(min>59)
+            {
+                hr=hr+1;
+                min=0;
+            }
+            x=hr+'  :: '+min+'  :: '+sec;
+            document.getElementById("demo").innerHTML =x;
+            document.getElementById("b1").disabled = true;
+            t = setTimeout(function(){ start() }, 1000); 
+        }
+        function stopp()
+        {
+            clearTimeout(t);
+            document.getElementById("b1").disabled =false;
+        }
+        function rset()
+        {
+            clearTimeout(t);
+            min=0;
+            sec=0;
+            hr=0;
+            run=0;
+            x=hr+'  :: '+min+'  :: '+sec;
+            document.getElementById("demo").innerHTML =x ;
+            document.getElementById("b1").disabled =false;
+        }
+    </script>
+        
+</body>
+</html>
